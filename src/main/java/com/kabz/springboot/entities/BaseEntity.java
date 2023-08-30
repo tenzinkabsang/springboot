@@ -3,6 +3,9 @@ package com.kabz.springboot.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.joda.time.DateTime;
+import org.joda.time.Instant;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 @MappedSuperclass
 @Getter
@@ -14,10 +17,12 @@ public class BaseEntity {
     private  Long id;
 
     @Column(insertable = false, updatable = false)
-    private DateTime createdDate;
+    @CreatedDate
+    private Instant createdDate;
 
     @Column(insertable = false)
-    private DateTime modifiedDate;
+    @LastModifiedDate
+    private Instant modifiedDate;
 
     @Override
     public boolean equals(Object obj) {
